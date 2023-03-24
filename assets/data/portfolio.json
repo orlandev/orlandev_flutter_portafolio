@@ -1,0 +1,148 @@
+{
+  "config": {
+    "bg_color": "#242F4B",
+    "title_color": "#242F4B",
+    "subtitle_color": "#242F4B",
+    "title_weight": "bold",
+    "subtitle_weight": "bold",
+    "progress_color": "#242F4B"
+  },
+  "portfolio": {
+    "info": {
+      "name": "Orlando N. Rodriguez",
+      "description": "Acerca de"
+    },
+    "slogan": "Lorem Imsum ya sabes",
+    "address": "Paquito Borrero #156 % Calixto Garcia y Avenida de la Libertad",
+    "age": 32,
+    "user_images": {
+      "avatar": {
+        "url": "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
+        "blur_hash": "LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
+      },
+      "header_images": [
+        {
+          "url": "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
+          "blur_hash": "LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
+        },
+        {
+          "url": "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
+          "blur_hash": "LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
+        }
+      ]
+    },
+    "contact": [
+      {
+        "icon": "phone",
+        "text": "+5354074127"
+      },
+      {
+        "icon": "email",
+        "text": "onovas05@gmail.com"
+      },
+      {
+        "icon": "url",
+        "text": "https://orlandev.com"
+      }
+    ],
+    "social": [
+      {
+        "icon": "url icon or fontawesom icon",
+        "name": "Facebook",
+        "url": "https://facebook.com"
+      },
+      {
+        "icon": "url icon or fontawesom icon",
+        "name": "Facebook",
+        "url": "https://facebook.com"
+      }
+    ],
+    "skills": [
+      {
+        "info": {
+          "name": "Kotlin",
+          "description": "Lorem Imsum"
+        },
+        "type": "Language",
+        "percent": 90,
+        "header_image": {
+          "url": "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
+          "blur_hash": "LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
+        }
+      },
+      {
+        "info": {
+          "name": "Kotlin",
+          "description": "Lorem Imsum"
+        },
+        "type": "Language",
+        "percent": 90,
+        "header_image": {
+          "url": "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
+          "blur_hash": "LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
+        }
+      }
+    ],
+    "projects": [
+      {
+        "info": {
+          "name": "Project Name",
+          "description": "Lorem Imsum jsdfnlsdf ls df sdf"
+        },
+        "url": "https://githib.com/orlandev",
+        "header_image": {
+          "url": "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
+          "blur_hash": "LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
+        }
+      }
+    ],
+    "posts": [
+      {
+        "info": {
+          "name": "Project Name",
+          "description": "Lorem Imsum jsdfnlsdf ls df sdf"
+        },
+        "header_image": {
+          "url": "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
+          "blur_hash": "LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
+        }
+      },
+      {
+        "info": {
+          "name": "Project Name",
+          "description": "Lorem Imsum jsdfnlsdf ls df sdf"
+        },
+        "header_image": {
+          "url": "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
+          "blur_hash": "LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
+        }
+      }
+    ],
+    "education": [
+      {
+        "info": {
+          "name": "Project Name",
+          "description": "Lorem Imsum jsdfnlsdf ls df sdf"
+        },
+        "start_date": 123456789,
+        "end_date": 12345678,
+        "header_image": {
+          "url": "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
+          "blur_hash": "LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
+        }
+      },
+      {
+        "info": {
+          "name": "Project Name",
+          "description": "Lorem Imsum jsdfnlsdf ls df sdf"
+        },
+        "start_date": 123456789,
+        "end_date": 12345678,
+        "header_image": {
+          "url": "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
+          "blur_hash": "LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
+        }
+      }
+    ]
+  }
+}
