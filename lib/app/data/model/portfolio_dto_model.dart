@@ -1,10 +1,10 @@
-class Portfolio {
+class PortfolioDto {
   Config? config;
   Portfolio? portfolio;
 
-  Portfolio({this.config, this.portfolio});
+  PortfolioDto({this.config, this.portfolio});
 
-  Portfolio.fromJson(Map<String, dynamic> json) {
+  PortfolioDto.fromJson(Map<String, dynamic> json) {
     config = json['config'] != null ? Config?.fromJson(json['config']) : null;
     portfolio = json['portfolio'] != null
         ? Portfolio?.fromJson(json['portfolio'])
@@ -56,6 +56,111 @@ class Config {
     data['title_weight'] = titleWeight;
     data['subtitle_weight'] = subtitleWeight;
     data['progress_color'] = progressColor;
+    return data;
+  }
+}
+
+class Portfolio {
+  Info? info;
+  String? slogan;
+  String? address;
+  int? age;
+  UserImages? userImages;
+  List<Contact>? contact;
+  List<Social>? social;
+  List<Skills>? skills;
+  List<Projects>? projects;
+  List<Posts>? posts;
+  List<Education>? education;
+
+  Portfolio(
+      {this.info,
+      this.slogan,
+      this.address,
+      this.age,
+      this.userImages,
+      this.contact,
+      this.social,
+      this.skills,
+      this.projects,
+      this.posts,
+      this.education});
+
+  Portfolio.fromJson(Map<String, dynamic> json) {
+    info = json['info'] != null ? Info?.fromJson(json['info']) : null;
+    slogan = json['slogan'];
+    address = json['address'];
+    age = json['age'];
+    userImages = json['user_images'] != null
+        ? UserImages?.fromJson(json['user_images'])
+        : null;
+    if (json['contact'] != null) {
+      contact = <Contact>[];
+      json['contact'].forEach((v) {
+        contact?.add(Contact.fromJson(v));
+      });
+    }
+    if (json['social'] != null) {
+      social = <Social>[];
+      json['social'].forEach((v) {
+        social?.add(Social.fromJson(v));
+      });
+    }
+    if (json['skills'] != null) {
+      skills = <Skills>[];
+      json['skills'].forEach((v) {
+        skills?.add(Skills.fromJson(v));
+      });
+    }
+    if (json['projects'] != null) {
+      projects = <Projects>[];
+      json['projects'].forEach((v) {
+        projects?.add(Projects.fromJson(v));
+      });
+    }
+    if (json['posts'] != null) {
+      posts = <Posts>[];
+      json['posts'].forEach((v) {
+        posts?.add(Posts.fromJson(v));
+      });
+    }
+    if (json['education'] != null) {
+      education = <Education>[];
+      json['education'].forEach((v) {
+        education?.add(Education.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    if (info != null) {
+      data['info'] = info?.toJson();
+    }
+    data['slogan'] = slogan;
+    data['address'] = address;
+    data['age'] = age;
+    if (userImages != null) {
+      data['user_images'] = userImages?.toJson();
+    }
+    if (contact != null) {
+      data['contact'] = contact?.map((v) => v.toJson()).toList();
+    }
+    if (social != null) {
+      data['social'] = social?.map((v) => v.toJson()).toList();
+    }
+    if (skills != null) {
+      data['skills'] = skills?.map((v) => v.toJson()).toList();
+    }
+    if (projects != null) {
+      data['projects'] = projects?.map((v) => v.toJson()).toList();
+    }
+    if (posts != null) {
+      data['posts'] = posts?.map((v) => v.toJson()).toList();
+    }
+    if (education != null) {
+      data['education'] = education?.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
