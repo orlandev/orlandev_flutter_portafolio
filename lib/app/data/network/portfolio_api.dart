@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:orlandev_flutter_portafolio/app/data/model/portfolio_dto_model.dart';
@@ -8,35 +10,50 @@ class PortfolioApi extends GetConnect {
 
   @override
   void onInit() {
-    httpClient.defaultDecoder = (map) {
+    defaultContentType = "application/json";
+
+    baseUrl = 'https://raw.githubusercontent.com/';
+
+    timeout = const Duration(seconds: 100);
+
+    defaultDecoder = (map) {
       if (map is Map<String, dynamic>) return PortfolioDto.fromJson(map);
       if (map is List) {
         return map.map((item) => PortfolioDto.fromJson(item)).toList();
       }
     };
 
-    httpClient.baseUrl = 'https://raw.githubusercontent.com/';
-
     Logger().d("onInit API");
-
   }
 
   Future<PortfolioDto?> getPortfolioDto(int id) async {
 
     Logger().d("API:  getPortfolioDto($id)   ");
 
-    final response = await get(_endpoint, contentType: "application/json");
+    try {
+      Logger().d("API:  Start TRY ");
 
-    Logger().d("API: FETCH: ${httpClient.baseUrl}$_endpoint");
+      Response response = await get(_endpoint);
 
-    Logger().d("API: FETCH: ${response.body}");
+      Logger().d("API:  Result: ${response.body}");
 
-    return response.body;
+      return response.body;
+
+    } on SocketException catch (e) {
+      Logger().d("socketeeeeeeeeeeeeeeeeeeee");
+      throw SocketException(e.message.toString());
+    } on FormatException catch (_) {
+      Logger().d("format");
+      throw const FormatException("Unable to process the data");
+    } catch (e) {
+      Logger().d("socket");
+      throw Exception("Error $e");
+    }
   }
 
   Future<Response<PortfolioDto>> postPortfolioDto(
-          PortfolioDto PortfolioDto) async =>
-      await post('PortfolioDto', PortfolioDto);
+          PortfolioDto portfolioDto) async =>
+      await post('PortfolioDto', portfolioDto);
 
   Future<Response> deletePortfolioDto(int id) async =>
       await delete('PortfolioDto/$id');
