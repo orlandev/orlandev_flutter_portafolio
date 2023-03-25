@@ -1,10 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:orlandev_flutter_portafolio/app/data/model/portfolio_dto_model.dart';
 
-class PortfolioApi extends GetConnect {
+class PortfolioApi extends GetConnect implements GetxService {
   final _endpoint =
       'orlandev/orlandev_flutter_portafolio/master/assets/data/portfolio.json';
 
@@ -27,7 +28,6 @@ class PortfolioApi extends GetConnect {
   }
 
   Future<PortfolioDto?> getPortfolioDto(int id) async {
-
     Logger().d("API:  getPortfolioDto($id)   ");
 
     try {
@@ -37,8 +37,11 @@ class PortfolioApi extends GetConnect {
 
       Logger().d("API:  Result: ${response.body}");
 
-      return response.body;
+      final jsonStr = await json.decode(response.body);
 
+      var result = PortfolioDto.fromJson(jsonStr);
+
+      return result;
     } on SocketException catch (e) {
       Logger().d("socketeeeeeeeeeeeeeeeeeeee");
       throw SocketException(e.message.toString());
@@ -46,7 +49,7 @@ class PortfolioApi extends GetConnect {
       Logger().d("format");
       throw const FormatException("Unable to process the data");
     } catch (e) {
-      Logger().d("socket");
+      Logger().d("Socket: ${e.toString()}");
       throw Exception("Error $e");
     }
   }

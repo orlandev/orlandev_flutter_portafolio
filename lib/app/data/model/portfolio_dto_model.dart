@@ -2,7 +2,7 @@ class PortfolioDto {
   Config? config;
   Portfolio? portfolio;
 
-  PortfolioDto({this.config, this.portfolio});
+  PortfolioDto(this.config, this.portfolio);
 
   PortfolioDto.fromJson(Map<String, dynamic> json) {
     config = json['config'] != null ? Config?.fromJson(json['config']) : null;

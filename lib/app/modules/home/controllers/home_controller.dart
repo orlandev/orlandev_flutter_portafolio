@@ -1,23 +1,26 @@
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:orlandev_flutter_portafolio/app/data/model/portfolio_dto_model.dart';
 import 'package:orlandev_flutter_portafolio/app/data/repository/repository.dart';
 
 class HomeController extends GetxController {
-
   final PortfolioRepository _repository = Get.find<PortfolioRepository>();
 
-  Rx<PortfolioDto?> currentPortfolio = null.obs;
+  Rx<PortfolioDto> currentPortfolio = PortfolioDto(null, null).obs;
 
   RxString errorMessage = ''.obs;
 
   @override
   void onInit() {
-    
     super.onInit();
-    _repository.getPortfolio().then((value) => {
-      if (value != null) {currentPortfolio.value = value}
+    _repository.getPortfolio().then((value) {
+      Logger().d("HomeController: $value");
+      if (value != null) {
+        currentPortfolio.value = value;
+      } else {
+        Logger().d("HomeController: $value");
+      }
     });
-
   }
 
   @override
