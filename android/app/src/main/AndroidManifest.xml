@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.orlandev.orlandev_flutter_portafolio">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="orlandev_flutter_portafolio"
         android:name="${applicationName}"

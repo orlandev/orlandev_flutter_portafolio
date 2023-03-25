@@ -3,9 +3,9 @@ import 'package:orlandev_flutter_portafolio/app/data/model/portfolio_dto_model.d
 import 'package:orlandev_flutter_portafolio/app/data/repository/repository.dart';
 
 class HomeController extends GetxController {
+
   final PortfolioRepository _repository = Get.find<PortfolioRepository>();
 
-  //TODO: Implement HomeController
   Rx<PortfolioDto?> currentPortfolio = null.obs;
 
   RxString errorMessage = ''.obs;

@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:orlandev_flutter_portafolio/app/data/model/portfolio_dto_model.dart';
 
 class PortfolioApi extends GetConnect {
+  final _endpoint =
+      'orlandev/orlandev_flutter_portafolio/master/assets/data/portfolio.json';
+
   @override
   void onInit() {
     httpClient.defaultDecoder = (map) {
@@ -10,12 +14,23 @@ class PortfolioApi extends GetConnect {
         return map.map((item) => PortfolioDto.fromJson(item)).toList();
       }
     };
+
     httpClient.baseUrl = 'https://raw.githubusercontent.com/';
+
+    Logger().d("onInit API");
+
   }
 
   Future<PortfolioDto?> getPortfolioDto(int id) async {
-    final response = await get(
-        'orlandev/orlandev_flutter_portafolio/master/assets/data/PortfolioDto.json');
+
+    Logger().d("API:  getPortfolioDto($id)   ");
+
+    final response = await get(_endpoint, contentType: "application/json");
+
+    Logger().d("API: FETCH: ${httpClient.baseUrl}$_endpoint");
+
+    Logger().d("API: FETCH: ${response.body}");
+
     return response.body;
   }
 
