@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -11,21 +12,34 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        body: Column(children: [
-          Header(
-            name:
-                controller.currentPortfolio.value.portfolio?.info?.name ?? " ",
-            image: 'https://picsum.photos/id/237/200/300',
-            description: controller
-                    .currentPortfolio.value.portfolio?.info?.description ??
-                " ",
-            location:
-                controller.currentPortfolio.value.portfolio?.location ?? " ",
-          ),
-        ]),
+        bottomNavigationBar: footer,
+        body: ResponsiveWrapper(
+          breakpoints: const [
+            ResponsiveBreakpoint.autoScale(600, name: MOBILE),
+            ResponsiveBreakpoint.autoScale(800, name: TABLET),
+            ResponsiveBreakpoint.autoScale(1200, name: DESKTOP),
+          ],
+          child: Column(children: [
+            Header(
+              name: controller.currentPortfolio.value.portfolio?.info?.name ??
+                  " ",
+              image: 'https://picsum.photos/id/237/200/300',
+              description: controller
+                      .currentPortfolio.value.portfolio?.info?.description ??
+                  " ",
+              slogan:
+                  controller.currentPortfolio.value.portfolio?.slogan ?? " ",
+              location:
+                  controller.currentPortfolio.value.portfolio?.location ?? " ",
+            ),
+          ]),
+        ),
       ),
     );
   }
+
+  Widget get footer => const SizedBox(
+      height: 50, child: Center(child: AutoSizeText("Made with Flutter")));
 }
 
 class Header extends StatelessWidget {
@@ -35,12 +49,14 @@ class Header extends StatelessWidget {
     required this.image,
     required this.description,
     required this.location,
+    required this.slogan,
   });
 
   final String name;
   final String image;
-  final String description;
+  final String slogan;
   final String location;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +65,7 @@ class Header extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          topSpace,
-          avatar,
-          userInfo,
-        ],
+        children: [topSpace, avatar, userInfo, moreInfoWidget],
       ),
     );
   }
@@ -117,6 +129,15 @@ class Header extends StatelessWidget {
         child: CircleAvatar(
           radius: Get.width * (radiusConstant - 0.01),
           backgroundImage: NetworkImage(image),
+        ),
+      );
+
+  Widget get moreInfoWidget => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: AutoSizeText(
+          slogan * 10,
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+          minFontSize: 10,
         ),
       );
 }
