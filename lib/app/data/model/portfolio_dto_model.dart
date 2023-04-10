@@ -63,6 +63,7 @@ class Config {
 class Portfolio {
   Info? info;
   String? slogan;
+  String? location;
   String? address;
   int? age;
   UserImages? userImages;
@@ -77,6 +78,7 @@ class Portfolio {
   Portfolio(
       {this.info,
       this.slogan,
+      this.location,
       this.address,
       this.age,
       this.userImages,
@@ -91,6 +93,7 @@ class Portfolio {
   Portfolio.fromJson(Map<String, dynamic> json) {
     info = json['info'] != null ? Info?.fromJson(json['info']) : null;
     slogan = json['slogan'];
+    location = json['Location'];
     address = json['address'];
     age = json['age'];
     userImages = json['user_images'] != null
@@ -146,6 +149,7 @@ class Portfolio {
       data['info'] = info?.toJson();
     }
     data['slogan'] = slogan;
+    data['Location'] = location;
     data['address'] = address;
     data['age'] = age;
     if (userImages != null) {

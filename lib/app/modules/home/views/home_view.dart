@@ -13,12 +13,15 @@ class HomeView extends GetView<HomeController> {
       () => Scaffold(
         body: Column(children: [
           Header(
-              name: controller.currentPortfolio.value.portfolio?.info?.name ??
-                  " ",
-              image: 'https://picsum.photos/id/237/200/300',
-              description: controller
-                      .currentPortfolio.value.portfolio?.info?.description ??
-                  " "),
+            name:
+                controller.currentPortfolio.value.portfolio?.info?.name ?? " ",
+            image: 'https://picsum.photos/id/237/200/300',
+            description: controller
+                    .currentPortfolio.value.portfolio?.info?.description ??
+                " ",
+            location:
+                controller.currentPortfolio.value.portfolio?.location ?? " ",
+          ),
         ]),
       ),
     );
@@ -31,11 +34,13 @@ class Header extends StatelessWidget {
     required this.name,
     required this.image,
     required this.description,
+    required this.location,
   });
 
   final String name;
   final String image;
   final String description;
+  final String location;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +83,19 @@ class Header extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: AutoSizeText(
                 description,
+                maxFontSize: 50,
+                textAlign: TextAlign.center,
+                softWrap: true,
+                overflow: TextOverflow.fade,
+                minFontSize: 12,
+                textScaleFactor: 1,
+                maxLines: 2,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: AutoSizeText(
+                location,
                 maxFontSize: 50,
                 textAlign: TextAlign.center,
                 softWrap: true,
