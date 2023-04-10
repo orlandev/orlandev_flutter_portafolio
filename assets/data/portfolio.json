@@ -143,6 +143,24 @@
           "blur_hash": "LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
         }
       }
+    ],
+    "experiences": [
+      {
+        "info": {
+          "name": "Inmersoft",
+          "description": "Android Developer"
+        },
+        "start_time": 95159151,
+        "end_time": 95159151
+      },
+      {
+        "info": {
+          "name": "Inmersoft",
+          "description": "Android Developer"
+        },
+        "start_time": 95159151,
+        "end_time": 95159151
+      }
     ]
   }
 }
