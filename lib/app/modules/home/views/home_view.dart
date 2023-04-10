@@ -1,5 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -7,41 +9,96 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(children: [
-        Expanded(
-            flex: 1,
-            child: SizedBox(
-              child: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const CircleAvatar(
-                        backgroundColor: Colors.grey,
-                        radius: 55,
-                        child: CircleAvatar(
-                          radius: 50.0,
-                          backgroundImage:
-                              NetworkImage('https://picsum.photos/id/237/200/300'),
-                        ),
-                      ),
-                      Column(children: const [
-                        Text("Orlando N. Rodriguez"),
-                      ],)
-                    ],
-                  ),
-                ),
-              ),
-            )),
-        Expanded(
-            flex: 3,
-            child: Container(
-              color: Colors.blue,
-            )),
-      ]),
+    return Obx(
+      () => Scaffold(
+        body: Column(children: [
+          Header(
+              name: controller.currentPortfolio.value.portfolio?.info?.name ??
+                  " ",
+              image: 'https://picsum.photos/id/237/200/300',
+              description: controller
+                      .currentPortfolio.value.portfolio?.info?.description ??
+                  " "),
+        ]),
+      ),
     );
   }
+}
+
+class Header extends StatelessWidget {
+  const Header({
+    super.key,
+    required this.name,
+    required this.image,
+    required this.description,
+  });
+
+  final String name;
+  final String image;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          topSpace,
+          avatar,
+          userInfo,
+        ],
+      ),
+    );
+  }
+
+  Widget get topSpace => SizedBox(height: Get.height * 0.08);
+
+  Widget get userInfo => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: AutoSizeText(
+                name,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                maxFontSize: 80,
+                textAlign: TextAlign.center,
+                softWrap: true,
+                overflow: TextOverflow.fade,
+                minFontSize: 18,
+                textScaleFactor: 1,
+                maxLines: 2,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: AutoSizeText(
+                description,
+                maxFontSize: 50,
+                textAlign: TextAlign.center,
+                softWrap: true,
+                overflow: TextOverflow.fade,
+                minFontSize: 12,
+                textScaleFactor: 1,
+                maxLines: 2,
+              ),
+            ),
+          ],
+        ),
+      );
+
+  static const radiusConstant = 0.15;
+
+  Widget get avatar => CircleAvatar(
+        backgroundColor: Colors.grey,
+        radius: Get.width * radiusConstant,
+        child: CircleAvatar(
+          radius: Get.width * (radiusConstant - 0.01),
+          backgroundImage: NetworkImage(image),
+        ),
+      );
 }

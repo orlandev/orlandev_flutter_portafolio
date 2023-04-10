@@ -2,7 +2,7 @@ class PortfolioDto {
   Config? config;
   Portfolio? portfolio;
 
-  PortfolioDto(this.config, this.portfolio);
+  PortfolioDto({this.config, this.portfolio});
 
   PortfolioDto.fromJson(Map<String, dynamic> json) {
     config = json['config'] != null ? Config?.fromJson(json['config']) : null;
@@ -72,6 +72,7 @@ class Portfolio {
   List<Projects>? projects;
   List<Posts>? posts;
   List<Education>? education;
+  List<Experiences>? experiences;
 
   Portfolio(
       {this.info,
@@ -84,7 +85,8 @@ class Portfolio {
       this.skills,
       this.projects,
       this.posts,
-      this.education});
+      this.education,
+      this.experiences});
 
   Portfolio.fromJson(Map<String, dynamic> json) {
     info = json['info'] != null ? Info?.fromJson(json['info']) : null;
@@ -130,6 +132,12 @@ class Portfolio {
         education?.add(Education.fromJson(v));
       });
     }
+    if (json['experiences'] != null) {
+      experiences = <Experiences>[];
+      json['experiences'].forEach((v) {
+        experiences?.add(Experiences.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -160,6 +168,9 @@ class Portfolio {
     }
     if (education != null) {
       data['education'] = education?.map((v) => v.toJson()).toList();
+    }
+    if (experiences != null) {
+      data['experiences'] = experiences?.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -421,6 +432,30 @@ class Education {
     if (headerImage != null) {
       data['header_image'] = headerImage?.toJson();
     }
+    return data;
+  }
+}
+
+class Experiences {
+  Info? info;
+  int? startTime;
+  int? endTime;
+
+  Experiences({this.info, this.startTime, this.endTime});
+
+  Experiences.fromJson(Map<String, dynamic> json) {
+    info = json['info'] != null ? Info?.fromJson(json['info']) : null;
+    startTime = json['start_time'];
+    endTime = json['end_time'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    if (info != null) {
+      data['info'] = info?.toJson();
+    }
+    data['start_time'] = startTime;
+    data['end_time'] = endTime;
     return data;
   }
 }
