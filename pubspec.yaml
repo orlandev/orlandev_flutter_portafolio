@@ -2,15 +2,15 @@ name: orlandev_flutter_portafolio
 version: 1.0.0+1
 publish_to: none
 description: My dev portafolio made in FLutter.
-environment: 
+environment:
   sdk: '>=2.19.4 <3.0.0'
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.2
   get_storage: ^2.1.1
   logger: ^1.3.0
   get: 4.6.5
-  flutter: 
+  flutter:
     sdk: flutter
   octo_image: ^1.0.2
   auto_size_text: ^3.0.0
@@ -19,13 +19,16 @@ dependencies:
   cached_network_image: ^3.2.3
   font_awesome_flutter: ^10.4.0
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: ^2.0.0
-  flutter_test: 
+  flutter_test:
     sdk: flutter
 
-flutter: 
-  assets: 
+flutter:
+  assets:
     - assets/data/portfolio.json
   uses-material-design: true
-
+  fonts:
+      - family: SanFrancisco
+        fonts:
+          - asset: fonts/san_francisco_text-light.otf

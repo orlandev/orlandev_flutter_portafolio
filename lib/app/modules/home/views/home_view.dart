@@ -18,30 +18,29 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
         body: (GetPlatform.isMobile)
             ? const HomeParallaxContainer(
-                backgroundUrl:
-                    "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
-                front: HomeContent(),
-              )
+          backgroundUrl:
+          "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
+          front: HomeContent(),
+        )
             : NotMobileContainer(
-                maxHeight: Get.height * 0.80,
-                maxWidth: Get.width * 0.30,
-                backgroundUrl:
-                    "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
-                child: const HomeParallaxContainer(
-                  backgroundUrl:
-                      "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
-                  front: HomeContent(),
-                )));
+            maxHeight: Get.height * 0.80,
+            maxWidth: Get.width * 0.30,
+            backgroundUrl:
+            "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
+            child: const HomeParallaxContainer(
+              backgroundUrl:
+              "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
+              front: HomeContent(),
+            )));
   }
 }
 
 class NotMobileContainer extends StatelessWidget {
-  const NotMobileContainer(
-      {Key? key,
-      required this.child,
-      required this.backgroundUrl,
-      required this.maxHeight,
-      required this.maxWidth})
+  const NotMobileContainer({Key? key,
+    required this.child,
+    required this.backgroundUrl,
+    required this.maxHeight,
+    required this.maxWidth})
       : super(key: key);
 
   final Widget child;
@@ -89,12 +88,11 @@ class HomeContent extends StatelessWidget {
 }
 
 class BottomBarIOS extends StatelessWidget {
-  const BottomBarIOS(
-      {Key? key,
-      required this.width,
-      required this.height,
-      this.blurSigma = 20,
-      this.borderRadius = 35})
+  const BottomBarIOS({Key? key,
+    required this.width,
+    required this.height,
+    this.blurSigma = 20,
+    this.borderRadius = 35})
       : super(key: key);
 
   final double width;
@@ -151,13 +149,12 @@ class BottomBarIOS extends StatelessWidget {
 const double iOSIconsRoundValue = 14;
 
 class IosIconButton extends StatelessWidget {
-  const IosIconButton(
-      {Key? key,
-      this.height = 60,
-      this.width = 60,
-      required this.iconData,
-      required this.color,
-      this.onTap})
+  const IosIconButton({Key? key,
+    this.height = 60,
+    this.width = 60,
+    required this.iconData,
+    required this.color,
+    this.onTap})
       : super(key: key);
 
   final double height;
@@ -175,9 +172,9 @@ class IosIconButton extends StatelessWidget {
         children: [
           Container(
               decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(iOSIconsRoundValue),
-          )),
+                color: color,
+                borderRadius: BorderRadius.circular(iOSIconsRoundValue),
+              )),
           Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(iOSIconsRoundValue),
@@ -196,31 +193,96 @@ class IosIconButton extends StatelessWidget {
   }
 }
 
+class DeskAppData {
+  String name;
+  Color color;
+  IconData icon;
+  String navUrl;
+  bool isExternalApp;
+
+  DeskAppData({
+    required this.name,
+    required this.color,
+    required this.icon,
+    required this.navUrl,
+    required this.isExternalApp });
+}
+
 class Apps extends StatelessWidget {
   const Apps({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(crossAxisCount: 4,children: [
-      for(int i = 0 ; i<10;i++)
-        DeskApp(),
 
-    ],);
+//TODO EXTRACT THIS LIST
+    List<DeskAppData> deskApps = [
+      DeskAppData(
+          name: "Facebook",
+          color: const Color(0xFF0165E1),
+          icon: FontAwesomeIcons.facebookF,
+          navUrl: "",
+          isExternalApp: true),
+      DeskAppData(
+          name: "Github",
+          color: const Color(0xFF000000),
+          icon: FontAwesomeIcons.github,
+          navUrl: "",
+          isExternalApp: true),
+      DeskAppData(
+          name: "Linkedin",
+          color: const Color(0xFF0072b1),
+          icon: FontAwesomeIcons.linkedinIn,
+          navUrl: "",
+          isExternalApp: true),
+      DeskAppData(
+          name: "WhatsApp",
+          color: const Color(0xFF4FCE5D),
+          icon: FontAwesomeIcons.whatsapp,
+          navUrl: "",
+          isExternalApp: true),
+    ];
+
+
+    return GridView.count(
+      crossAxisCount: 4,
+      children: [
+         for(DeskAppData app in deskApps)
+           DeskApp(icon: app.icon, name: app.name, color: app.color)
+      ],
+    );
   }
 }
 
 class DeskApp extends StatelessWidget {
   const DeskApp({
     super.key,
+    required this.icon,
+    required this.name,
+    required this.color,
+    this.onTap,
   });
+
+  final IconData icon;
+  final String name;
+  final Color color;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(10.0),
-      child: IosIconButton(
-          iconData: CupertinoIcons.music_note_2,
-          color: Color(0xFFDE0404)),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          IosIconButton(iconData: icon, color: color),
+          const SizedBox(
+            height: 4,
+          ),
+          Expanded(
+              child: Text(name,
+                  style: const TextStyle(
+                      fontSize: 12, fontFamily: 'SanFrancisco')))
+        ],
+      ),
     );
   }
 }
