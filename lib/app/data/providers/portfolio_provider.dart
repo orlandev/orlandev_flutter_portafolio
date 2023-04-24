@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+
 import 'package:orlandev_flutter_portafolio/app/data/model/portfolio_dto_model.dart';
 
 class PortfolioProvider extends GetConnect implements GetxService {

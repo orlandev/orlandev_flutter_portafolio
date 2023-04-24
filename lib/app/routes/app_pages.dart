@@ -13,20 +13,15 @@ class AppPages {
   static const INITIAL = Routes.HOME;
 
   static final routes = [
-
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
     ),
-
     GetPage(
       name: _Paths.PORTFOLIO_HOME,
       page: () => const PortfolioView(),
       binding: PortfolioBinding(),
     ),
-
-
-
   ];
 }

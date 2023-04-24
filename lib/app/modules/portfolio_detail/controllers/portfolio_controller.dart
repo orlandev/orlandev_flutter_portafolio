@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+
 import 'package:orlandev_flutter_portafolio/app/data/model/portfolio_dto_model.dart';
 import 'package:orlandev_flutter_portafolio/app/data/providers/portfolio_provider.dart';
 
