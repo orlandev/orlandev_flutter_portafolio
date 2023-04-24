@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:parallax_sensors_bg/parallax_sensors_bg.dart';
@@ -132,6 +133,9 @@ class BottomBarIOS extends StatelessWidget {
                       IosIconButton(
                           iconData: CupertinoIcons.music_note_2,
                           color: Color(0xFFDE0404)),
+                      IosIconButton(
+                          iconData: FontAwesomeIcons.facebookF,
+                          color: Color(0xFF0165E1)),
                     ],
                   ),
                 ),
@@ -197,7 +201,27 @@ class Apps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return GridView.count(crossAxisCount: 4,children: [
+      for(int i = 0 ; i<10;i++)
+        DeskApp(),
+
+    ],);
+  }
+}
+
+class DeskApp extends StatelessWidget {
+  const DeskApp({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.all(10.0),
+      child: IosIconButton(
+          iconData: CupertinoIcons.music_note_2,
+          color: Color(0xFFDE0404)),
+    );
   }
 }
 
