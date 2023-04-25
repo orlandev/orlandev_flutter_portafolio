@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:octo_image/octo_image.dart';
 import 'package:parallax_sensors_bg/parallax_sensors_bg.dart';
 
 import '../../../data/model/desk_app_data.dart';
@@ -270,12 +271,18 @@ class HomeParallaxContainer extends StatelessWidget {
         sensor: ParallaxSensor.gyroscope,
         layers: [
           Layer(
-            sensitivity: 10,
-            image: CachedNetworkImageProvider(backgroundUrl),
-            imageFit: BoxFit.cover,
-            preventCrop: true,
-            imageBlurValue: 0,
-          ),
+              sensitivity: 10,
+              imageBlurValue: 0,
+              child: SizedBox(
+                height: double.infinity,
+                width: double.infinity,
+                child: OctoImage(
+                  placeholderBuilder:
+                      OctoPlaceholder.blurHash("LbCHNeOnILNbKBj^xGX79zwJbuot"),
+                  image: CachedNetworkImageProvider(backgroundUrl),
+                  fit: BoxFit.cover,
+                ),
+              )),
         ],
         child: front);
   }
