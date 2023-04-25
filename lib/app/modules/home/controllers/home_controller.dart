@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+import '../../../../generated/assets.dart';
 import '../../../data/model/desk_app_data.dart';
 
 class HomeController extends GetxController {
@@ -40,13 +42,12 @@ class HomeController extends GetxController {
         isExternalApp: true),
     DeskAppData(
         name: "Telegram",
-        color: const Color(0xFF0088cc),
+        color: const Color(0xff229ED9),
         icon: FontAwesomeIcons.telegram,
         navUrl: "",
         isExternalApp: true),
     DeskAppData(
         name: "Instagram",
-        color: Colors.red,
         icon: FontAwesomeIcons.instagram,
         navUrl: "",
         gradient: const LinearGradient(
@@ -58,6 +59,12 @@ class HomeController extends GetxController {
             Colors.orange,
           ],
         ),
+        isExternalApp: true),
+    DeskAppData(
+        name: "Fotos",
+        assetSvg: Assets.imagesIosPhotos,
+        color: Colors.white,
+        navUrl: "",
         isExternalApp: true),
   ];
 }

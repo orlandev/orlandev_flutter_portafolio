@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:octo_image/octo_image.dart';
@@ -154,21 +155,35 @@ class BottomBarIOS extends StatelessWidget {
 
 const double iOSIconsRoundValue = 14;
 
+class IosIconButtonGradient extends StatelessWidget {
+  const IosIconButtonGradient({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
 class IosIconButton extends StatelessWidget {
   const IosIconButton(
       {Key? key,
       this.height = 60,
       this.width = 60,
-      required this.iconData,
-      required this.color,
+      this.iconData,
+      this.color,
       this.onTap,
-      this.gradient})
+      this.gradient,
+      this.assetSvgIcon,
+      this.iconSize = 44.0})
       : super(key: key);
+
+  final double iconSize;
 
   final double height;
   final double width;
-  final IconData iconData;
-  final Color color;
+  final IconData? iconData;
+  final String? assetSvgIcon;
+  final Color? color;
   final Gradient? gradient;
   final VoidCallback? onTap;
 
@@ -179,16 +194,11 @@ class IosIconButton extends StatelessWidget {
       width: width,
       child: Stack(
         children: [
-          (gradient == null)
-              ? Container(
-                  decoration: BoxDecoration(
+          Container(
+              decoration: BoxDecoration(
                   color: color,
                   borderRadius: BorderRadius.circular(iOSIconsRoundValue),
-                ))
-              : Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(iOSIconsRoundValue),
-                      gradient: gradient)),
+                  gradient: gradient)),
           Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(iOSIconsRoundValue),
@@ -199,7 +209,14 @@ class IosIconButton extends StatelessWidget {
                       Colors.white30,
                       Colors.transparent,
                     ])),
-            child: Center(child: Icon(size: 44, iconData)),
+            child: Center(
+                child: (assetSvgIcon == null)
+                    ? Icon(size: iconSize, iconData)
+                    : SvgPicture.asset(
+                        assetSvgIcon ?? "",
+                        width: iconSize,
+                        height: iconSize,
+                      )),
           ),
         ],
       ),
@@ -215,6 +232,7 @@ class Apps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+      physics: const BouncingScrollPhysics(),
       crossAxisCount: 4,
       children: [for (DeskAppData app in listOfApps) DeskApp(appData: app)],
     );

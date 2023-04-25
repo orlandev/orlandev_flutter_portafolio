@@ -18,15 +18,32 @@ dependencies:
   parallax_sensors_bg: ^1.0.1
   cached_network_image: ^3.2.3
   font_awesome_flutter: ^10.4.0
+  flutter_svg: ^2.0.5
 
 dev_dependencies:
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.12.0
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: "icon_launcher"
+  image_path: "assets/images/launcher.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  ios:
+    generate: true
+    remove_alpha_ios: true
+  web:
+    generate: true
+  windows:
+    generate: true
+  macos:
+    generate: true
 
 flutter:
   assets:
     - assets/data/portfolio.json
+    - assets/images/
   uses-material-design: true
   fonts:
       - family: SanFrancisco
