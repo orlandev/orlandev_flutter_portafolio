@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:parallax_sensors_bg/parallax_sensors_bg.dart';
 
+import '../../../data/model/desk_app_data.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -17,20 +18,20 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: (GetPlatform.isMobile)
-            ? const HomeParallaxContainer(
+            ? HomeParallaxContainer(
                 backgroundUrl:
                     "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
-                front: HomeContent(),
+                front: HomeContent(listOfApps: controller.deskApps),
               )
             : NotMobileContainer(
                 maxHeight: Get.height * 0.80,
                 maxWidth: Get.width * 0.30,
                 backgroundUrl:
                     "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
-                child: const HomeParallaxContainer(
+                child: HomeParallaxContainer(
                   backgroundUrl:
                       "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
-                  front: HomeContent(),
+                  front: HomeContent(listOfApps: controller.deskApps),
                 )));
   }
 }
@@ -66,15 +67,17 @@ class NotMobileContainer extends StatelessWidget {
 }
 
 class HomeContent extends StatelessWidget {
-  const HomeContent({Key? key}) : super(key: key);
+  const HomeContent({Key? key, required this.listOfApps}) : super(key: key);
+
+  final List<DeskAppData> listOfApps;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Expanded(
+        Expanded(
           flex: 6,
-          child: Apps(),
+          child: Apps(listOfApps: listOfApps),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -197,70 +200,17 @@ class IosIconButton extends StatelessWidget {
   }
 }
 
-class DeskAppData {
-  String name;
-  Color color;
-  IconData icon;
-  String navUrl;
-  bool isExternalApp;
-
-  DeskAppData(
-      {required this.name,
-      required this.color,
-      required this.icon,
-      required this.navUrl,
-      required this.isExternalApp});
-}
-
-final List<DeskAppData> deskApps = [
-  DeskAppData(
-      name: "Facebook",
-      color: const Color(0xFF0165E1),
-      icon: FontAwesomeIcons.facebookF,
-      navUrl: "",
-      isExternalApp: true),
-  DeskAppData(
-      name: "Github",
-      color: const Color(0xFF000000),
-      icon: FontAwesomeIcons.github,
-      navUrl: "",
-      isExternalApp: true),
-  DeskAppData(
-      name: "Linkedin",
-      color: const Color(0xFF0072b1),
-      icon: FontAwesomeIcons.linkedinIn,
-      navUrl: "",
-      isExternalApp: true),
-  DeskAppData(
-      name: "WhatsApp",
-      color: const Color(0xFF4FCE5D),
-      icon: FontAwesomeIcons.whatsapp,
-      navUrl: "",
-      isExternalApp: true),
-  DeskAppData(
-      name: "Twitter",
-      color: const Color(0xFF1da1f2),
-      icon: FontAwesomeIcons.twitter,
-      navUrl: "",
-      isExternalApp: true),
-  DeskAppData(
-      name: "Telegram",
-      color: const Color(0xFF0088cc),
-      icon: FontAwesomeIcons.telegram,
-      navUrl: "",
-      isExternalApp: true),
-];
-
 class Apps extends StatelessWidget {
-  const Apps({Key? key}) : super(key: key);
+  const Apps({Key? key, required this.listOfApps}) : super(key: key);
+
+  final List<DeskAppData> listOfApps;
 
   @override
   Widget build(BuildContext context) {
-
     return GridView.count(
       crossAxisCount: 4,
       children: [
-        for (DeskAppData app in deskApps)
+        for (DeskAppData app in listOfApps)
           DeskApp(icon: app.icon, name: app.name, color: app.color)
       ],
     );
