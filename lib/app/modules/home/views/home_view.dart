@@ -185,7 +185,7 @@ class IosIconButton extends StatelessWidget {
                       Colors.white30,
                       Colors.transparent,
                     ])),
-            child: Center(child: Icon(size: 48, iconData)),
+            child: Center(child: Icon(size: 44, iconData)),
           ),
         ],
       ),
@@ -238,6 +238,12 @@ class Apps extends StatelessWidget {
           name: "WhatsApp",
           color: const Color(0xFF4FCE5D),
           icon: FontAwesomeIcons.whatsapp,
+          navUrl: "",
+          isExternalApp: true),
+      DeskAppData(
+          name: "Twitter",
+          color: const Color(0xFF1da1f2),
+          icon: FontAwesomeIcons.twitter,
           navUrl: "",
           isExternalApp: true),
     ];
