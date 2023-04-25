@@ -18,29 +18,30 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
         body: (GetPlatform.isMobile)
             ? const HomeParallaxContainer(
-          backgroundUrl:
-          "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
-          front: HomeContent(),
-        )
+                backgroundUrl:
+                    "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
+                front: HomeContent(),
+              )
             : NotMobileContainer(
-            maxHeight: Get.height * 0.80,
-            maxWidth: Get.width * 0.30,
-            backgroundUrl:
-            "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
-            child: const HomeParallaxContainer(
-              backgroundUrl:
-              "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
-              front: HomeContent(),
-            )));
+                maxHeight: Get.height * 0.80,
+                maxWidth: Get.width * 0.30,
+                backgroundUrl:
+                    "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
+                child: const HomeParallaxContainer(
+                  backgroundUrl:
+                      "https://ik.imagekit.io/6xgh00mrhaz/flutter_portfolio/ios_1.webp",
+                  front: HomeContent(),
+                )));
   }
 }
 
 class NotMobileContainer extends StatelessWidget {
-  const NotMobileContainer({Key? key,
-    required this.child,
-    required this.backgroundUrl,
-    required this.maxHeight,
-    required this.maxWidth})
+  const NotMobileContainer(
+      {Key? key,
+      required this.child,
+      required this.backgroundUrl,
+      required this.maxHeight,
+      required this.maxWidth})
       : super(key: key);
 
   final Widget child;
@@ -88,11 +89,12 @@ class HomeContent extends StatelessWidget {
 }
 
 class BottomBarIOS extends StatelessWidget {
-  const BottomBarIOS({Key? key,
-    required this.width,
-    required this.height,
-    this.blurSigma = 20,
-    this.borderRadius = 35})
+  const BottomBarIOS(
+      {Key? key,
+      required this.width,
+      required this.height,
+      this.blurSigma = 20,
+      this.borderRadius = 35})
       : super(key: key);
 
   final double width;
@@ -120,7 +122,7 @@ class BottomBarIOS extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: const [
                       IosIconButton(
                           iconData: CupertinoIcons.phone_fill,
@@ -132,8 +134,9 @@ class BottomBarIOS extends StatelessWidget {
                           iconData: CupertinoIcons.music_note_2,
                           color: Color(0xFFDE0404)),
                       IosIconButton(
-                          iconData: FontAwesomeIcons.facebookF,
-                          color: Color(0xFF0165E1)),
+                        color: CupertinoColors.systemGrey,
+                        iconData: CupertinoIcons.settings,
+                      ),
                     ],
                   ),
                 ),
@@ -149,12 +152,13 @@ class BottomBarIOS extends StatelessWidget {
 const double iOSIconsRoundValue = 14;
 
 class IosIconButton extends StatelessWidget {
-  const IosIconButton({Key? key,
-    this.height = 60,
-    this.width = 60,
-    required this.iconData,
-    required this.color,
-    this.onTap})
+  const IosIconButton(
+      {Key? key,
+      this.height = 60,
+      this.width = 60,
+      required this.iconData,
+      required this.color,
+      this.onTap})
       : super(key: key);
 
   final double height;
@@ -172,9 +176,9 @@ class IosIconButton extends StatelessWidget {
         children: [
           Container(
               decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.circular(iOSIconsRoundValue),
-              )),
+            color: color,
+            borderRadius: BorderRadius.circular(iOSIconsRoundValue),
+          )),
           Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(iOSIconsRoundValue),
@@ -200,12 +204,12 @@ class DeskAppData {
   String navUrl;
   bool isExternalApp;
 
-  DeskAppData({
-    required this.name,
-    required this.color,
-    required this.icon,
-    required this.navUrl,
-    required this.isExternalApp });
+  DeskAppData(
+      {required this.name,
+      required this.color,
+      required this.icon,
+      required this.navUrl,
+      required this.isExternalApp});
 }
 
 class Apps extends StatelessWidget {
@@ -213,7 +217,6 @@ class Apps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
 //TODO EXTRACT THIS LIST
     List<DeskAppData> deskApps = [
       DeskAppData(
@@ -246,14 +249,19 @@ class Apps extends StatelessWidget {
           icon: FontAwesomeIcons.twitter,
           navUrl: "",
           isExternalApp: true),
+      DeskAppData(
+          name: "Telegram",
+          color: const Color(0xFF0088cc),
+          icon: FontAwesomeIcons.telegram,
+          navUrl: "",
+          isExternalApp: true),
     ];
-
 
     return GridView.count(
       crossAxisCount: 4,
       children: [
-         for(DeskAppData app in deskApps)
-           DeskApp(icon: app.icon, name: app.name, color: app.color)
+        for (DeskAppData app in deskApps)
+          DeskApp(icon: app.icon, name: app.name, color: app.color)
       ],
     );
   }
@@ -309,7 +317,7 @@ class HomeParallaxContainer extends StatelessWidget {
         sensor: ParallaxSensor.gyroscope,
         layers: [
           Layer(
-            sensitivity: 5,
+            sensitivity: 10,
             image: CachedNetworkImageProvider(backgroundUrl),
             imageFit: BoxFit.cover,
             preventCrop: true,
