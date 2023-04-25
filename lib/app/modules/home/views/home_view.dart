@@ -208,7 +208,7 @@ class IosIconButton extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.white30,
+                      Colors.white38,
                       Colors.transparent,
                     ])),
             child: Center(
