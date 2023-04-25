@@ -5,6 +5,7 @@ class Assets {
   static const String assetsDataPortfolio = 'assets/data/portfolio.json';
   static const String dataPortfolio = 'assets/data/portfolio.json';
   static const String imagesIosPhotos = 'assets/images/ios_photos.svg';
-  static const String imagesOr = 'assets/images/launcher.png';
+  static const String imagesIosSettings = 'assets/images/ios_settings.svg';
+  static const String imagesLauncher = 'assets/images/launcher.png';
 
 }

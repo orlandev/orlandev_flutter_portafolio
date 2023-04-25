@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:octo_image/octo_image.dart';
+import 'package:orlandev_flutter_portafolio/generated/assets.dart';
 import 'package:parallax_sensors_bg/parallax_sensors_bg.dart';
 
 import '../../../data/model/desk_app_data.dart';
@@ -138,8 +139,9 @@ class BottomBarIOS extends StatelessWidget {
                           iconData: CupertinoIcons.music_note_2,
                           color: Color(0xFFDE0404)),
                       IosIconButton(
-                        color: CupertinoColors.systemGrey,
-                        iconData: CupertinoIcons.settings,
+                        assetSvgIcon: Assets.imagesIosSettings,
+                        iconSize: 52,
+                        color: Color(0xFF7E7A7A),
                       ),
                     ],
                   ),
@@ -257,6 +259,7 @@ class DeskApp extends StatelessWidget {
         children: [
           IosIconButton(
             iconData: appData.icon,
+            assetSvgIcon: appData.assetSvg,
             color: appData.color,
             gradient: appData.gradient,
           ),
