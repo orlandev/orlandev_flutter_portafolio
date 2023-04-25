@@ -49,6 +49,15 @@ class HomeController extends GetxController {
         color: Colors.red,
         icon: FontAwesomeIcons.instagram,
         navUrl: "",
+        gradient: const LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomRight,
+          colors: [
+            Colors.purple,
+            Colors.pink,
+            Colors.orange,
+          ],
+        ),
         isExternalApp: true),
   ];
 }

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:parallax_sensors_bg/parallax_sensors_bg.dart';
@@ -161,13 +160,15 @@ class IosIconButton extends StatelessWidget {
       this.width = 60,
       required this.iconData,
       required this.color,
-      this.onTap})
+      this.onTap,
+      this.gradient})
       : super(key: key);
 
   final double height;
   final double width;
   final IconData iconData;
   final Color color;
+  final Gradient? gradient;
   final VoidCallback? onTap;
 
   @override
@@ -177,11 +178,16 @@ class IosIconButton extends StatelessWidget {
       width: width,
       child: Stack(
         children: [
-          Container(
-              decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(iOSIconsRoundValue),
-          )),
+          (gradient == null)
+              ? Container(
+                  decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.circular(iOSIconsRoundValue),
+                ))
+              : Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(iOSIconsRoundValue),
+                      gradient: gradient)),
           Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(iOSIconsRoundValue),
@@ -209,10 +215,7 @@ class Apps extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 4,
-      children: [
-        for (DeskAppData app in listOfApps)
-          DeskApp(icon: app.icon, name: app.name, color: app.color)
-      ],
+      children: [for (DeskAppData app in listOfApps) DeskApp(appData: app)],
     );
   }
 }
@@ -220,15 +223,11 @@ class Apps extends StatelessWidget {
 class DeskApp extends StatelessWidget {
   const DeskApp({
     super.key,
-    required this.icon,
-    required this.name,
-    required this.color,
     this.onTap,
+    required this.appData,
   });
 
-  final IconData icon;
-  final String name;
-  final Color color;
+  final DeskAppData appData;
   final VoidCallback? onTap;
 
   @override
@@ -237,12 +236,16 @@ class DeskApp extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          IosIconButton(iconData: icon, color: color),
+          IosIconButton(
+            iconData: appData.icon,
+            color: appData.color,
+            gradient: appData.gradient,
+          ),
           const SizedBox(
             height: 4,
           ),
           Expanded(
-              child: Text(name,
+              child: Text(appData.name,
                   style: const TextStyle(
                       fontSize: 12, fontFamily: 'SanFrancisco')))
         ],
