@@ -212,50 +212,50 @@ class DeskAppData {
       required this.isExternalApp});
 }
 
+final List<DeskAppData> deskApps = [
+  DeskAppData(
+      name: "Facebook",
+      color: const Color(0xFF0165E1),
+      icon: FontAwesomeIcons.facebookF,
+      navUrl: "",
+      isExternalApp: true),
+  DeskAppData(
+      name: "Github",
+      color: const Color(0xFF000000),
+      icon: FontAwesomeIcons.github,
+      navUrl: "",
+      isExternalApp: true),
+  DeskAppData(
+      name: "Linkedin",
+      color: const Color(0xFF0072b1),
+      icon: FontAwesomeIcons.linkedinIn,
+      navUrl: "",
+      isExternalApp: true),
+  DeskAppData(
+      name: "WhatsApp",
+      color: const Color(0xFF4FCE5D),
+      icon: FontAwesomeIcons.whatsapp,
+      navUrl: "",
+      isExternalApp: true),
+  DeskAppData(
+      name: "Twitter",
+      color: const Color(0xFF1da1f2),
+      icon: FontAwesomeIcons.twitter,
+      navUrl: "",
+      isExternalApp: true),
+  DeskAppData(
+      name: "Telegram",
+      color: const Color(0xFF0088cc),
+      icon: FontAwesomeIcons.telegram,
+      navUrl: "",
+      isExternalApp: true),
+];
+
 class Apps extends StatelessWidget {
   const Apps({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-//TODO EXTRACT THIS LIST
-    List<DeskAppData> deskApps = [
-      DeskAppData(
-          name: "Facebook",
-          color: const Color(0xFF0165E1),
-          icon: FontAwesomeIcons.facebookF,
-          navUrl: "",
-          isExternalApp: true),
-      DeskAppData(
-          name: "Github",
-          color: const Color(0xFF000000),
-          icon: FontAwesomeIcons.github,
-          navUrl: "",
-          isExternalApp: true),
-      DeskAppData(
-          name: "Linkedin",
-          color: const Color(0xFF0072b1),
-          icon: FontAwesomeIcons.linkedinIn,
-          navUrl: "",
-          isExternalApp: true),
-      DeskAppData(
-          name: "WhatsApp",
-          color: const Color(0xFF4FCE5D),
-          icon: FontAwesomeIcons.whatsapp,
-          navUrl: "",
-          isExternalApp: true),
-      DeskAppData(
-          name: "Twitter",
-          color: const Color(0xFF1da1f2),
-          icon: FontAwesomeIcons.twitter,
-          navUrl: "",
-          isExternalApp: true),
-      DeskAppData(
-          name: "Telegram",
-          color: const Color(0xFF0088cc),
-          icon: FontAwesomeIcons.telegram,
-          navUrl: "",
-          isExternalApp: true),
-    ];
 
     return GridView.count(
       crossAxisCount: 4,
